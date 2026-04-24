@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>봉은사 Bongeunsa</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5EDD8;
+  --cream2: #EDE0C4;
+  --cream3: #E2D4B0;
+  --paper: #FAF5E9;
+  --ink: #2C2416;
+  --ink2: #4A3C28;
+  --ink3: #7A6A50;
+  --ink4: #A89878;
+  --red: #8B2020;
+  --gold: #B08030;
+  --border: #D4C4A0;
+  --shadow: rgba(44,36,22,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: #E8DCC8; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  display: flex; justify-content: center; align-items: flex-start;
+  min-height: 100vh; padding: 0;
+}
+
+/* PHONE SHELL */
+.phone {
+  width: 100%; max-width: 390px;
+  min-height: 100vh;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+/* SCREEN SYSTEM */
+.screen { display: none; flex-direction: column; flex: 1; }
+.screen.active { display: flex; }
+
+/* ─── STATUS BAR ─── */
+.status-bar {
+  height: 44px; background: var(--cream);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.status-time { font-size: 15px; font-weight: 600; color: var(--ink); }
+.status-icons { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink2); }
+
+/* ─── LANG BAR ─── */
+.lang-bar {
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.lang-title { font-family: 'Noto Serif KR', serif; font-size: 13px; color: var(--ink2); }
+.lang-btns { display: flex; gap: 4px; }
+.lang-btn {
+  padding: 4px 10px; border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--ink3);
+  font-size: 11px; font-family: inherit; cursor: pointer;
+  transition: all 0.18s;
+}
+.lang-btn.active {
+  background: var(--ink); color: var(--cream);
+  border-color: var(--ink);
+}
+
+/* ─── HERO SECTION ─── */
+.hero {
+  background: var(--cream);
+  padding: 0 0 20px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* 한지 텍스처 배경 */
+.hero-texture {
+  position: absolute; inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23EDE0C4'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23D4C4A0' opacity='0.3'/%3E%3Ccircle cx='3' cy='3' r='0.4' fill='%23D4C4A0' opacity='0.2'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+
+.hero-inner {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: 200px;
+}
+
+/* 왼쪽 일러스트 영역 */
+.hero-illust {
+  width: 55%;
+  padding: 20px 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  width: fit-content;
+  margin-bottom: 8px;
+}
+
+.hero-title-block {
+  flex: 1;
+}
+.hero-title-kr {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -1px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  height: 120px;
+  margin-bottom: 8px;
+}
+.hero-subtitle-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hero-subtitle-item {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 12px;
+  color: var(--ink2);
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-subtitle-item::before {
+  content: '';
+  width: 12px; height: 1px;
+  background: var(--ink3);
+}
+
+.hero-tagline {
+  font-size: 10px;
+  color: var(--ink4);
+  letter-spacing: 1px;
+  margin-top: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+/* 오른쪽 SVG 일러스트 */
+.hero-art {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 16px 16px 0;
+}
+
+/* ─── GRID MENU (상단 아이콘 타입) ─── */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.icon-grid-item {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 4px;
+  gap: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border: none;
+  font-family: inherit;
+}
+.icon-grid-item:hover { background: var(--cream2); }
+.icon-grid-item:active { background: var(--cream3); }
+.icon-grid-svg { width: 36px; height: 36px; }
+.icon-grid-label { font-size: 10px; color: var(--ink2); letter-spacing: 0.5px; text-align: center; }
+.icon-grid-label-en { font-size: 9px; color: var(--ink4); letter-spacing: 1px; }
+
+/* ─── MAIN CONTENT SCROLL ─── */
+.main-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 14px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── SECTION CARDS ─── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.section-line {
+  height: 1px;
+  flex: 1;
+  background: var(--border);
+}
+.section-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 11px;
+  color: var(--ink3);
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+
+/* BIG CARD - 무인투어 */
+.big-card {
+  background: var(--ink);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.18s;
+  position: relative;
+}
+.big-card:hover { transform: scale(0.99); }
+.big-card-inner {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100px;
+}
+.big-card-text { }
+.big-card-badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.big-card-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.big-card-sub {
+  font-size: 11px;
+  color: var(--ink4);
+  letter-spacing: 1px;
+}
+.big-card-art {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.big-card-arrow {
+  position: absolute;
+  bottom: 16px;
+  right: 18px;
+  font-size: 18px;
+  color: var(--ink3);
+}
+
+/* 2-GRID CARD */
+.two-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.card-item {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.card-item:hover { background: var(--cream2); border-color: var(--ink4); }
+.card-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+.card-item:hover::after { opacity: 1; }
+.card-icon { width: 44px; height: 44px; }
+.card-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.card-title-en {
+  font-size: 9px;
+  color: var(--ink4);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* MEMBER CARD */
+.member-card {
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.member-card:hover { background: var(--cream3); }
+.member-left { display: flex; align-items: center; gap: 12px; }
+.member-icon { width: 40px; height: 40px; }
+.member-text { }
+.member-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.member-sub { font-size: 11px; color: var(--ink3); }
+.member-cta {
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 11px;
+  font-family: inherit;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+/* ─── BOTTOM NAV ─── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 390px;
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 4px;
+  gap: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+}
+.nav-item.active .nav-icon { opacity: 1; }
+.nav-item.active .nav-label { color: var(--ink); font-weight: 600; }
+.nav-icon { width: 24px; height: 24px; opacity: 0.4; transition: opacity 0.15s; }
+.nav-label { font-size: 10px; color: var(--ink3); }
+
+/* ─── TOUR SCREEN ─── */
+#screen-tour { background: var(--paper); }
+
+.tour-header {
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.back-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.tour-header-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+}
+.tour-step-badge {
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* PROGRESS */
+.progress-bar-wrap {
+  padding: 10px 16px 0;
+  flex-shrink: 0;
+}
+.progress-bar-track {
+  height: 3px;
+  background: var(--cream3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 0 2px;
+}
+.progress-dot {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--paper);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px;
+  color: var(--ink4);
+  font-family: 'Noto Serif KR', serif;
+  transition: all 0.3s;
+}
+.progress-dot.done { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.progress-dot.current { background: var(--cream); border-color: var(--ink); color: var(--ink); font-weight: 700; }
+
+/* TOUR CONTENT */
+.tour-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 14px 100px;
+}
+
+/* INTRO */
+.intro-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.intro-card-top {
+  background: var(--ink);
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+}
+.intro-stamp {
+  display: inline-block;
+  border: 2px solid var(--red);
+  color: var(--red);
+  font-family: 'Noto Serif KR', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 3px 12px;
+  margin-bottom: 12px;
+  border-radius: 2px;
+}
+.intro-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.intro-sub {
+  font-size: 11px;
+  color: var(--ink4);
+  letter-spacing: 1px;
+}
+.intro-card-body { padding: 20px; }
+
+.form-group { margin-bottom: 12px; }
+.form-label {
+  font-size: 11px;
+  color: var(--ink3);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  display: block;
+}
+.form-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--ink); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.form-select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237A6A50'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.consent-box {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 11px;
+  color: var(--ink3);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.consent-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink2);
+  cursor: pointer;
+}
+.consent-check input { accent-color: var(--ink); width: 16px; height: 16px; }
+
+/* QUESTION */
+.q-location-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px 4px 8px;
+  margin-bottom: 10px;
+}
+.q-loc-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+}
+.q-loc-text { font-size: 11px; color: var(--ink2); letter-spacing: 0.5px; }
+
+.temple-visual {
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.temple-visual-inner {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--cream2) 100%);
+}
+.temple-visual-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(44,36,22,0.7);
+  padding: 8px 14px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 1px;
+}
+
+/* MAP */
+.map-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.map-inner {
+  height: 100px;
+  position: relative;
+  background: linear-gradient(135deg, #EDE0C4 0%, #E2D4B0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map-path-line {
+  position: absolute;
+  top: 50%; left: 10%; right: 10%;
+  height: 2px;
+  background: repeating-linear-gradient(to right, var(--border) 0, var(--border) 6px, transparent 6px, transparent 12px);
+}
+.map-node {
+  position: absolute;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 10px; font-weight: 600;
+  border: 2px solid var(--paper);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  top: 50%; transform: translateY(-50%);
+  transition: all 0.3s;
+}
+.map-node.done { background: var(--ink); color: var(--cream); }
+.map-node.current { background: var(--red); color: #fff; animation: pulseRed 1.5s infinite; }
+.map-node.upcoming { background: var(--cream3); color: var(--ink4); }
+@keyframes pulseRed {
+  0%,100% { box-shadow: 0 0 0 0 rgba(139,32,32,0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(139,32,32,0); }
+}
+.map-footer {
+  padding: 7px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+.map-footer-label { font-size: 10px; color: var(--ink3); letter-spacing: 1px; }
+.map-footer-pos { font-size: 10px; color: var(--ink2); font-weight: 500; }
+
+/* QUESTION CARD */
+.q-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 10px;
+}
+.q-num {
+  font-size: 10px;
+  color: var(--red);
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.q-num::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.q-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.options { display: flex; flex-direction: column; gap: 7px; }
+.opt-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--paper);
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: left;
+  font-family: inherit;
+}
+.opt-btn:hover { border-color: var(--ink3); background: var(--cream); }
+.opt-btn.sel { border-color: var(--ink); background: var(--cream); }
+.opt-marker {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--cream2);
+  color: var(--ink3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  flex-shrink: 0;
+  font-family: 'Noto Serif KR', serif;
+  transition: all 0.18s;
+}
+.opt-btn.sel .opt-marker { background: var(--ink); color: var(--cream); }
+.opt-text { font-size: 13px; color: var(--ink); line-height: 1.4; }
+
+/* RESULT */
+.result-hero {
+  background: var(--ink);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  position: relative;
+}
+.result-hero-texture {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23B08030' opacity='0.08'/%3E%3Ccircle cx='30' cy='30' r='1' fill='%23B08030' opacity='0.06'/%3E%3C/svg%3E");
+}
+.result-hero-inner {
+  position: relative;
+  padding: 28px 22px;
+  text-align: center;
+}
+.result-seal {
+  display: inline-block;
+  border: 2px solid var(--red);
+  color: var(--red);
+  font-family: 'Noto Serif KR', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 3px 12px;
+  margin-bottom: 14px;
+  border-radius: 2px;
+}
+.result-svg-wrap { margin: 0 auto 14px; width: 80px; height: 80px; }
+.result-type {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.result-desc {
+  font-size: 12px;
+  color: var(--ink4);
+  line-height: 1.8;
+}
+
+.result-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 10px;
+}
+.result-card-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 11px;
+  color: var(--ink3);
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.result-card-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.score-label { font-size: 12px; color: var(--ink2); width: 50px; flex-shrink: 0; font-family: 'Noto Serif KR', serif; }
+.score-track { flex: 1; height: 5px; background: var(--cream3); border-radius: 3px; overflow: hidden; }
+.score-fill { height: 100%; background: var(--ink); border-radius: 3px; transition: width 1s ease; }
+.score-num { font-size: 11px; color: var(--ink2); font-weight: 600; min-width: 24px; text-align: right; font-family: monospace; }
+
+.share-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+.share-btn {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-family: inherit;
+}
+.share-btn:hover { background: var(--cream2); border-color: var(--ink3); }
+.share-svg { width: 28px; height: 28px; }
+.share-label { font-size: 10px; color: var(--ink3); letter-spacing: 0.5px; }
+
+/* BOTTOM CTA */
+.bottom-cta {
+  position: fixed;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 390px;
+  padding: 10px 14px 24px;
+  background: linear-gradient(to top, var(--paper) 70%, transparent);
+  display: flex;
+  gap: 8px;
+  z-index: 50;
+}
+.cta-primary {
+  flex: 1; padding: 14px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none; border-radius: 12px;
+  font-size: 14px; font-weight: 600;
+  font-family: 'Noto Serif KR', serif;
+  cursor: pointer; letter-spacing: 1px;
+  transition: all 0.18s;
+}
+.cta-primary:hover { background: var(--ink2); }
+.cta-primary:disabled { background: var(--cream3); color: var(--ink4); cursor: default; }
+.cta-secondary {
+  padding: 14px 18px;
+  background: var(--cream);
+  color: var(--ink2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-size: 13px; font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s;
+  flex-shrink: 0;
+}
+.cta-secondary:hover { background: var(--cream2); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.fade-up { animation: fadeUp 0.35s ease forwards; }
+</style>
+</head>
+<body>
+<div class="phone">
+
+<!-- ═══════════ MAIN SCREEN ═══════════ -->
+<div id="screen-main" class="screen active">
+
+  <!-- Status bar -->
+  <div class="status-bar">
+    <div class="status-time">13:30</div>
+    <div class="status-icons">📶 🔋</div>
+  </div>
+
+  <!-- Lang bar -->
+  <div class="lang-bar">
+    <div class="lang-title">봉은사 奉恩寺</div>
+    <div class="lang-btns">
+      <button class="lang-btn active" onclick="setLang('ko',this)">한</button>
+      <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+      <button class="lang-btn" onclick="setLang('zh',this)">中</button>
+      <button class="lang-btn" onclick="setLang('ja',this)">日</button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-texture"></div>
+    <div class="hero-inner">
+      <div class="hero-illust">
+        <div>
+          <div class="hero-stamp" id="heroStamp">천년고찰 · 794 AD</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:4px;">
+            <div class="hero-title-kr" id="heroTitle">봉은사</div>
+            <div class="hero-subtitle-row" style="margin-top:8px;">
+              <div class="hero-subtitle-item" id="heroSub1">匠心手作</div>
+              <div class="hero-subtitle-item" id="heroSub2">良庭</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-tagline" id="heroTagline">서울 강남 · 도심 속 천년 사찰</div>
+      </div>
+      <div class="hero-art">
+        <!-- 전통 사찰 SVG 일러스트 -->
+        <svg viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg" width="110" height="150">
+          <!-- 구름/안개 -->
+          <ellipse cx="60" cy="155" rx="55" ry="8" fill="#D4C4A0" opacity="0.3"/>
+          <!-- 사찰 기단 -->
+          <rect x="15" y="120" width="90" height="8" rx="2" fill="#4A3C28"/>
+          <rect x="10" y="126" width="100" height="4" rx="1" fill="#3A2C1A"/>
+          <!-- 기둥 -->
+          <rect x="22" y="85" width="6" height="38" fill="#5C4A32"/>
+          <rect x="92" y="85" width="6" height="38" fill="#5C4A32"/>
+          <rect x="46" y="88" width="5" height="35" fill="#5C4A32"/>
+          <rect x="69" y="88" width="5" height="35" fill="#5C4A32"/>
+          <!-- 벽체 -->
+          <rect x="28" y="88" width="64" height="35" fill="#E8D8B4" opacity="0.4"/>
+          <!-- 창문/문 -->
+          <rect x="47" y="97" width="26" height="26" rx="2" fill="#3A2C1A"/>
+          <rect x="49" y="99" width="10" height="22" rx="1" fill="#6B4C35" opacity="0.5"/>
+          <rect x="61" y="99" width="10" height="22" rx="1" fill="#6B4C35" opacity="0.5"/>
+          <line x1="60" y1="99" x2="60" y2="121" stroke="#4A3C28" stroke-width="1"/>
+          <line x1="49" y1="110" x2="71" y2="110" stroke="#4A3C28" stroke-width="1"/>
+          <!-- 처마 (겹처마) -->
+          <path d="M5 85 Q60 70 115 85 L110 90 Q60 77 10 90 Z" fill="#3A2C1A"/>
+          <path d="M8 78 Q60 60 112 78 L108 84 Q60 66 12 84 Z" fill="#4A3C28"/>
+          <path d="M12 72 Q60 55 108 72 L105 78 Q60 61 15 78 Z" fill="#5C4A32"/>
+          <!-- 용마루 -->
+          <path d="M20 72 L60 58 L100 72" stroke="#4A3C28" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- 치미 장식 -->
+          <ellipse cx="20" cy="71" rx="4" ry="6" fill="#3A2C1A"/>
+          <ellipse cx="100" cy="71" rx="4" ry="6" fill="#3A2C1A"/>
+          <!-- 상륜 / 보주 -->
+          <circle cx="60" cy="55" r="4" fill="#B08030"/>
+          <line x1="60" y1="51" x2="60" y2="44" stroke="#B08030" stroke-width="1.5"/>
+          <circle cx="60" cy="43" r="3" fill="#B08030"/>
+          <!-- 나뭇잎 장식 -->
+          <ellipse cx="25" cy="75" rx="6" ry="3" fill="#5C7A40" opacity="0.6" transform="rotate(-20 25 75)"/>
+          <ellipse cx="95" cy="75" rx="6" ry="3" fill="#5C7A40" opacity="0.6" transform="rotate(20 95 75)"/>
+          <!-- 계단 -->
+          <rect x="45" y="126" width="30" height="4" rx="1" fill="#6B5A3E"/>
+          <rect x="50" y="130" width="20" height="3" rx="1" fill="#7A6A50"/>
+          <!-- 향로 -->
+          <ellipse cx="60" cy="134" rx="8" ry="3" fill="#4A3C28"/>
+          <rect x="57" y="126" width="6" height="8" rx="3" fill="#5C4A32"/>
+          <!-- 연기 -->
+          <path d="M60 126 Q58 120 60 115 Q62 110 60 105" stroke="#D4C4A0" stroke-width="1" fill="none" opacity="0.5" stroke-linecap="round"/>
+          <!-- 도장/인장 -->
+          <rect x="82" y="100" width="22" height="22" rx="2" fill="#8B2020" opacity="0.15"/>
+          <rect x="84" y="102" width="18" height="18" rx="1" fill="none" stroke="#8B2020" stroke-width="0.8" opacity="0.4"/>
+          <text x="93" y="115" text-anchor="middle" font-family="serif" font-size="8" fill="#8B2020" opacity="0.5">봉은</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icon Grid (4칸) -->
+  <div class="icon-grid">
+    <button class="icon-grid-item" onclick="gotoTour()">
+      <svg class="icon-grid-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#EDE0C4" stroke="#D4C4A0" stroke-width="1"/><path d="M10 28 L20 12 L30 28" stroke="#4A3C28" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="16" y="22" width="8" height="6" rx="1" stroke="#4A3C28" stroke-width="1.2" fill="#E8D8B4"/></svg>
+      <div class="icon-grid-label" id="ig1">무인투어</div>
+      <div class="icon-grid-label-en">SELF TOUR</div>
+    </button>
+    <button class="icon-grid-item">
+      <svg class="icon-grid-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#EDE0C4" stroke="#D4C4A0" stroke-width="1"/><rect x="11" y="14" width="18" height="14" rx="2" stroke="#4A3C28" stroke-width="1.5" fill="#E8D8B4"/><path d="M15 14 V12 Q20 10 25 12 V14" stroke="#4A3C28" stroke-width="1.2" fill="none"/><line x1="14" y1="19" x2="26" y2="19" stroke="#6B4C35" stroke-width="1"/><line x1="14" y1="22" x2="22" y2="22" stroke="#6B4C35" stroke-width="1"/></svg>
+      <div class="icon-grid-label" id="ig2">템플스테이</div>
+      <div class="icon-grid-label-en">TEMPLESTAY</div>
+    </button>
+    <button class="icon-grid-item">
+      <svg class="icon-grid-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#EDE0C4" stroke="#D4C4A0" stroke-width="1"/><rect x="11" y="13" width="18" height="14" rx="2" stroke="#4A3C28" stroke-width="1.5" fill="#E8D8B4"/><circle cx="20" cy="20" r="4" stroke="#6B4C35" stroke-width="1.2" fill="none"/><circle cx="20" cy="20" r="1.5" fill="#4A3C28"/></svg>
+      <div class="icon-grid-label" id="ig3">갤러리</div>
+      <div class="icon-grid-label-en">GALLERY</div>
+    </button>
+    <button class="icon-grid-item">
+      <svg class="icon-grid-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#EDE0C4" stroke="#D4C4A0" stroke-width="1"/><path d="M14 26 L14 14 L26 20 Z" fill="#4A3C28"/><circle cx="26" cy="20" r="0" fill="none"/></svg>
+      <div class="icon-grid-label" id="ig4">유튜브</div>
+      <div class="icon-grid-label-en">YOUTUBE</div>
+    </button>
+  </div>
+
+  <!-- Scroll content -->
+  <div class="main-scroll">
+    <!-- 무인투어 big card -->
+    <div class="section-header">
+      <div class="section-line"></div>
+      <div class="section-title" id="sec1Title">무인 사찰 투어</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="big-card" onclick="gotoTour()">
+      <div class="big-card-inner">
+        <div class="big-card-text">
+          <div class="big-card-badge" id="bcBadge">나를 찾는 여정</div>
+          <div class="big-card-title" id="bcTitle">Who am I</div>
+          <div class="big-card-sub" id="bcSub">봉은사 5개 전각을 거닐며<br>당신의 내면을 탐색합니다</div>
+        </div>
+        <div class="big-card-art">
+          <svg viewBox="0 0 80 80" width="72" height="72">
+            <circle cx="40" cy="40" r="36" fill="#3A2C1A" opacity="0.6"/>
+            <path d="M25 55 L40 25 L55 55" stroke="#D4C4A0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="34" y="43" width="12" height="12" rx="1" stroke="#D4C4A0" stroke-width="1.5" fill="none"/>
+            <circle cx="40" cy="22" r="3" fill="#B08030"/>
+          </svg>
+        </div>
+      </div>
+      <div class="big-card-arrow">›</div>
+    </div>
+
+    <!-- 메뉴 2-grid -->
+    <div class="section-header">
+      <div class="section-line"></div>
+      <div class="section-title" id="sec2Title">사찰 안내</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="two-grid">
+      <div class="card-item">
+        <svg class="card-icon" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#EDE0C4"/><path d="M10 30 L22 14 L34 30" stroke="#4A3C28" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="23" width="8" height="7" rx="1" stroke="#4A3C28" stroke-width="1.4" fill="#D4C4A0"/></svg>
+        <div>
+          <div class="card-title" id="c1">템플스테이</div>
+          <div class="card-title-en">TEMPLESTAY</div>
+        </div>
+      </div>
+      <div class="card-item">
+        <svg class="card-icon" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#EDE0C4"/><rect x="12" y="14" width="20" height="16" rx="2" stroke="#4A3C28" stroke-width="1.8" fill="#D4C4A0"/><circle cx="22" cy="22" r="4" stroke="#6B4C35" stroke-width="1.4" fill="none"/><circle cx="22" cy="22" r="1.5" fill="#4A3C28"/></svg>
+        <div>
+          <div class="card-title" id="c2">갤러리</div>
+          <div class="card-title-en">GALLERY</div>
+        </div>
+      </div>
+      <div class="card-item">
+        <svg class="card-icon" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#EDE0C4"/><path d="M14 28 L14 16 L30 22 Z" fill="#4A3C28"/></svg>
+        <div>
+          <div class="card-title" id="c3">유튜브</div>
+          <div class="card-title-en">YOUTUBE</div>
+        </div>
+      </div>
+      <div class="card-item">
+        <svg class="card-icon" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#EDE0C4"/><circle cx="22" cy="22" r="8" stroke="#4A3C28" stroke-width="1.8" fill="none"/><circle cx="22" cy="22" r="3" fill="#4A3C28"/><circle cx="28" cy="16" r="2" fill="#4A3C28"/></svg>
+        <div>
+          <div class="card-title" id="c4">인스타그램</div>
+          <div class="card-title-en">INSTAGRAM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 회원 충전 -->
+    <div class="section-header" style="margin-top:4px;">
+      <div class="section-line"></div>
+      <div class="section-title" id="sec3Title">사찰 정보</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-left">
+        <svg class="member-icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#EDE0C4" stroke="#D4C4A0" stroke-width="1"/><circle cx="20" cy="17" r="5" stroke="#4A3C28" stroke-width="1.5" fill="none"/><path d="M10 32 Q20 26 30 32" stroke="#4A3C28" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <div class="member-text">
+          <div class="member-title" id="memTitle">사찰 오시는 길</div>
+          <div class="member-sub" id="memSub">서울 강남구 봉은사로 531</div>
+        </div>
+      </div>
+      <button class="member-cta" id="memCta">지도 보기</button>
+    </div>
+
+    <div class="member-card" style="margin-top:8px;">
+      <div class="member-left">
+        <svg class="member-icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#EDE0C4" stroke="#D4C4A0" stroke-width="1"/><rect x="12" y="14" width="16" height="12" rx="2" stroke="#4A3C28" stroke-width="1.5" fill="none"/><line x1="15" y1="19" x2="25" y2="19" stroke="#6B4C35" stroke-width="1"/><line x1="15" y1="22" x2="21" y2="22" stroke="#6B4C35" stroke-width="1"/></svg>
+        <div class="member-text">
+          <div class="member-title" id="noticeTitle">법회 안내</div>
+          <div class="member-sub" id="noticeSub">정기 법회 · 특별 행사</div>
+        </div>
+      </div>
+      <button class="member-cta" id="noticeCta">바로가기</button>
+    </div>
+
+  </div><!-- /main-scroll -->
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <button class="nav-item active">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 12L12 4l9 8v9h-6v-5H9v5H3z" stroke="#2C2416" stroke-width="1.5" fill="none" stroke-linejoin="round"/></svg>
+      <span class="nav-label" id="nav1">홈</span>
+    </button>
+    <button class="nav-item" onclick="gotoTour()">
+      <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#2C2416" stroke-width="1.5" fill="none"/><path d="M12 7v5l3 3" stroke="#2C2416" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label" id="nav2">투어</span>
+    </button>
+    <button class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="#2C2416" stroke-width="1.5" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#2C2416" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      <span class="nav-label" id="nav3">마이페이지</span>
+    </button>
+  </div>
+</div><!-- /screen-main -->
+
+
+<!-- ═══════════ TOUR SCREEN ═══════════ -->
+<div id="screen-tour" class="screen">
+
+  <div class="tour-header">
+    <button class="back-btn" onclick="tourBack()">←</button>
+    <div class="tour-header-title" id="tourHeaderTitle">무인 사찰 투어</div>
+    <div class="tour-step-badge" id="tourStepBadge">시작</div>
+  </div>
+
+  <div class="progress-bar-wrap" id="progressWrap" style="display:none;">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progFill" style="width:0%"></div>
+    </div>
+    <div class="progress-steps" id="progSteps"></div>
+  </div>
+
+  <div class="tour-scroll" id="tourScroll"></div>
+
+  <div class="bottom-cta" id="bottomCta"></div>
+
+</div><!-- /screen-tour -->
+
+</div><!-- /phone -->
+
+<script>
+/* ────── LANG DATA ────── */
+const L = {
+  ko: {
+    heroStamp:'천년고찰 · 794 AD', heroTitle:'봉은사', heroSub1:'匠心手作', heroSub2:'良庭', heroTagline:'서울 강남 · 도심 속 천년 사찰',
+    ig1:'무인투어',ig2:'템플스테이',ig3:'갤러리',ig4:'유튜브',
+    sec1:'무인 사찰 투어',sec2:'사찰 안내',sec3:'사찰 정보',
+    bcBadge:'나를 찾는 여정',bcTitle:'Who am I',bcSub:'봉은사 5개 전각을 거닐며<br>당신의 내면을 탐색합니다',
+    c1:'템플스테이',c2:'갤러리',c3:'유튜브',c4:'인스타그램',
+    memTitle:'사찰 오시는 길',memSub:'서울 강남구 봉은사로 531',memCta:'지도 보기',
+    noticeTitle:'법회 안내',noticeSub:'정기 법회 · 특별 행사',noticeCta:'바로가기',
+    nav1:'홈',nav2:'투어',nav3:'마이페이지',
+    tourHeader:'무인 사찰 투어',
+  },
+  en: {
+    heroStamp:'Historic Temple · 794 AD',heroTitle:'봉은사',heroSub1:'Artisan',heroSub2:'Crafted',heroTagline:'Gangnam, Seoul · 1,200 Year Old Temple',
+    ig1:'SELF TOUR',ig2:'TEMPLESTAY',ig3:'GALLERY',ig4:'YOUTUBE',
+    sec1:'Self-Guided Tour',sec2:'Temple Guide',sec3:'Temple Info',
+    bcBadge:'A Journey of Discovery',bcTitle:'Who am I',bcSub:'Walk through 5 sacred halls<br>and explore your inner self',
+    c1:'Templestay',c2:'Gallery',c3:'YouTube',c4:'Instagram',
+    memTitle:'Getting Here',memSub:'531 Bongeunsa-ro, Gangnam-gu',memCta:'Map',
+    noticeTitle:'Ceremonies',noticeSub:'Regular & Special Dharma Events',noticeCta:'View',
+    nav1:'Home',nav2:'Tour',nav3:'My Page',
+    tourHeader:'Self-Guided Tour',
+  },
+  zh: {
+    heroStamp:'千年古刹 · 794 AD',heroTitle:'봉은사',heroSub1:'匠心手作',heroSub2:'良庭',heroTagline:'首尔江南 · 都市中的千年古刹',
+    ig1:'无人游览',ig2:'寺院住宿',ig3:'图库',ig4:'油管',
+    sec1:'无人寺庙游览',sec2:'寺庙指南',sec3:'寺庙信息',
+    bcBadge:'寻找自我的旅程',bcTitle:'Who am I',bcSub:'漫步奉恩寺五处殿堂<br>探索您的内心世界',
+    c1:'寺院住宿',c2:'图库',c3:'YouTube',c4:'Instagram',
+    memTitle:'交通指南',memSub:'首尔江南区奉恩寺路531',memCta:'查看地图',
+    noticeTitle:'法会通知',noticeSub:'定期法会 · 特别活动',noticeCta:'查看',
+    nav1:'主页',nav2:'游览',nav3:'我的',
+    tourHeader:'无人寺庙游览',
+  },
+  ja: {
+    heroStamp:'千年古刹 · 794 AD',heroTitle:'봉은사',heroSub1:'匠心手作',heroSub2:'良庭',heroTagline:'ソウル江南 · 都心の千年古刹',
+    ig1:'無人ツアー',ig2:'テンプルステイ',ig3:'ギャラリー',ig4:'YouTube',
+    sec1:'無人寺院ツアー',sec2:'寺院案内',sec3:'寺院情報',
+    bcBadge:'自分を見つける旅',bcTitle:'Who am I',bcSub:'奉恩寺の5つの殿堂を歩き<br>内なる自分を探します',
+    c1:'テンプルステイ',c2:'ギャラリー',c3:'YouTube',c4:'Instagram',
+    memTitle:'アクセス',memSub:'ソウル江南区奉恩寺路531',memCta:'地図を見る',
+    noticeTitle:'法会案内',noticeSub:'定期法会 · 特別行事',noticeCta:'詳細',
+    nav1:'ホーム',nav2:'ツアー',nav3:'マイページ',
+    tourHeader:'無人寺院ツアー',
+  },
+};
+
+let lang = 'ko';
+function setLang(l, btn) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const d = L[l];
+  const ids = ['heroStamp','heroSub1','heroSub2','heroTagline','ig1','ig2','ig3','ig4','sec1Title','sec2Title','sec3Title','bcBadge','bcSub','c1','c2','c3','c4','memTitle','memSub','memCta','noticeTitle','noticeSub','noticeCta','nav1','nav2','nav3'];
+  const keys = ['heroStamp','heroSub1','heroSub2','heroTagline','ig1','ig2','ig3','ig4','sec1','sec2','sec3','bcBadge','bcSub','c1','c2','c3','c4','memTitle','memSub','memCta','noticeTitle','noticeSub','noticeCta','nav1','nav2','nav3'];
+  ids.forEach((id,i) => {
+    const el = document.getElementById(id);
+    if (el && d[keys[i]] !== undefined) el.innerHTML = d[keys[i]];
+  });
+  document.getElementById('bcTitle').textContent = 'Who am I';
+  document.getElementById('tourHeaderTitle').textContent = d.tourHeader;
+}
+
+/* ────── TOUR DATA ────── */
+const QS = {
+  ko: [
+    {loc:'대웅전',label:'대웅전 大雄殿',emoji:'🏛️',q:'고요한 법당 앞에 섰습니다.\n당신이 이 공간에서 가장 먼저 느끼는 것은?',opts:['마음이 저절로 경건해진다','웅장함에 압도된다','내 안의 고요함이 깨어난다','부처님께 절로 합장하고 싶다','이 공간의 역사가 궁금하다']},
+    {loc:'진여문',label:'진여문 眞如門',emoji:'⛩️',q:'일주문을 지나며 세상과 경계를 넘습니다.\n당신에게 경계란?',opts:['넘어서야 할 도전','지켜야 할 나만의 공간','새로운 시작의 상징','성장의 흔적','존재하지 않는 것']},
+    {loc:'삼층석탑',label:'삼층석탑 三層石塔',emoji:'🗿',q:'탑 앞에서 소원을 빌 수 있다면, 당신은?',opts:['가족의 건강과 행복을 빈다','나 자신의 깨달음을 구한다','세상의 평화를 기원한다','사랑하는 이와의 인연을 빈다','아무 소원도 빌지 않는다']},
+    {loc:'미륵대불',label:'미륵대불 彌勒大佛',emoji:'🙏',q:'23m 높이의 미륵대불 앞에 섰습니다.\n거대한 존재 앞에서 당신은?',opts:['겸손함을 느낀다','나의 작음을 받아들인다','오히려 자신감이 생긴다','그저 경이롭다','철학적 질문이 떠오른다']},
+    {loc:'선불당',label:'선불당 禪佛堂',emoji:'🕯️',q:'명상 공간에서 10분의 시간이 주어진다면?',opts:['눈을 감고 호흡에 집중한다','스치는 생각들을 관찰한다','감사한 것들을 떠올린다','아무 것도 하지 않는다','지금 이 순간을 기억에 새긴다']},
+  ],
+  en: [
+    {loc:'Main Hall',label:'Daeungjeon 大雄殿',emoji:'🏛️',q:'You stand before the serene dharma hall.\nWhat do you feel first?',opts:['A natural sense of reverence','Overwhelmed by its grandeur','A quiet awakening within','An urge to bow in prayer','Curiosity about its history']},
+    {loc:'Jinyeo Gate',label:'Jinyeomun 眞如門',emoji:'⛩️',q:'Crossing the gate, you leave the ordinary world.\nWhat does a boundary mean to you?',opts:['A challenge to overcome','A personal space to protect','A symbol of new beginnings','A mark of growth','Something that does not exist']},
+    {loc:'Stone Pagoda',label:'Three-Story Pagoda',emoji:'🗿',q:'If you could make a wish at this pagoda,\nwhat would you wish for?',opts:["My family's health and happiness",'Enlightenment for myself','Peace in the world','A cherished connection with a loved one','I would make no wish']},
+    {loc:'Grand Buddha',label:'Mireuk Grand Buddha',emoji:'🙏',q:'Standing before the 23m Mireuk Grand Buddha,\nhow do you feel?',opts:['Humbled','Accepting of my smallness','Surprisingly confident','Simply in awe','Philosophical questions arise']},
+    {loc:'Meditation Hall',label:'Seonbuldang 禪佛堂',emoji:'🕯️',q:'If given 10 minutes in the meditation space,\nwhat would you do?',opts:['Close my eyes and focus on breathing','Observe my passing thoughts','Reflect on things I am grateful for','Do absolutely nothing','Memorize this moment forever']},
+  ],
+  zh: [
+    {loc:'大雄殿',label:'大雄殿',emoji:'🏛️',q:'您站在宁静的法堂前。\n最先感受到什么？',opts:['自然而然地虔诚','被雄伟所震撼','内心的宁静被唤醒','想向佛陀合掌礼拜','对这个空间的历史感到好奇']},
+    {loc:'真如门',label:'真如门 眞如門',emoji:'⛩️',q:'穿越山门，您跨越了与世界的边界。\n对您来说，边界意味着什么？',opts:['需要跨越的挑战','需要守护的个人空间','新开始的象征','成长的印记','不存在的事物']},
+    {loc:'石塔',label:'三层石塔',emoji:'🗿',q:'如果可以在这座塔前许愿，\n您会许什么愿？',opts:['祈求家人健康幸福','寻求自我觉悟','祈愿世界和平','祈愿与爱人的缘分','什么都不许']},
+    {loc:'弥勒大佛',label:'弥勒大佛 彌勒大佛',emoji:'🙏',q:'站在23米高的弥勒大佛前，\n您感到？',opts:['感到谦逊','接受自己的渺小','反而有了自信','只是感到惊叹','浮现出哲学性的疑问']},
+    {loc:'禅佛堂',label:'禅佛堂 禪佛堂',emoji:'🕯️',q:'在冥想空间里给您10分钟，\n您会做什么？',opts:['闭上眼睛专注呼吸','观察脑海中闪过的念头','回想感恩的事物','什么都不做','像画一样记住此刻']},
+  ],
+  ja: [
+    {loc:'大雄殿',label:'大雄殿',emoji:'🏛️',q:'静かな法堂の前に立ちました。\nまず何を感じますか？',opts:['自然と敬虔な気持ちになる','壮大さに圧倒される','内なる静けさが目覚める','思わず合掌したくなる','この空間の歴史が気になる']},
+    {loc:'真如門',label:'真如門',emoji:'⛩️',q:'一柱門をくぐり、世界との境界を越えます。\nあなたにとって境界とは？',opts:['乗り越えるべき挑戦','守るべき自分だけの空間','新しい始まりの象徴','成長の証','存在しないもの']},
+    {loc:'石塔',label:'三層石塔',emoji:'🗿',q:'この塔の前で願いを叶えられるなら、\nあなたは？',opts:['家族の健康と幸せを願う','自分自身の悟りを求める','世界の平和を祈る','愛する人との縁を願う','何も願わない']},
+    {loc:'弥勒大仏',label:'弥勒大仏 彌勒大佛',emoji:'🙏',q:'高さ23mの弥勒大仏の前に立ちました。\n巨大な存在の前で？',opts:['謙虚さを感じる','自分の小ささを受け入れる','むしろ自信が湧く','ただ驚異を感じる','哲学的な問いが浮かぶ']},
+    {loc:'禅仏堂',label:'禅仏堂 禪佛堂',emoji:'🕯️',q:'瞑想空間で10分間の時間が与えられたら？',opts:['目を閉じて呼吸に集中する','浮かぶ思考を観察する','感謝していることを思い浮かべる','何もしない','今この瞬間を記憶に刻む']},
+  ],
+};
+
+const RS = {
+  ko:[{type:'피어나는 연꽃',desc:'어떤 환경에서도 아름다움을 찾아내는 사람입니다. 역경 속에서도 내면의 빛을 잃지 않으며, 주변에 평화와 위안을 줍니다.',scores:{고요:85,자비:70,지혜:65,용기:80}},{type:'불이문의 수호자',desc:'경계를 인식하고 지혜롭게 다루는 사람입니다. 내면의 중심이 단단하여 어떤 흔들림에도 자신을 잃지 않습니다.',scores:{고요:90,자비:60,지혜:85,용기:75}},{type:'선정의 구도자',desc:'내면의 고요함을 향해 끊임없이 나아가는 구도자입니다. 명상과 사유를 통해 삶의 본질에 다가가고자 합니다.',scores:{고요:95,자비:75,지혜:90,용기:65}}],
+  en:[{type:'The Blooming Lotus',desc:"You find beauty in any environment. Even in adversity, you don't lose your inner light and bring peace and comfort to others.",scores:{Serenity:85,Compassion:70,Wisdom:65,Courage:80}},{type:'Guardian of the Gate',desc:'You recognize boundaries and handle them wisely. Your inner core is solid and you never lose yourself no matter how things shake.',scores:{Serenity:90,Compassion:60,Wisdom:85,Courage:75}},{type:'The Seeker',desc:'You constantly move toward inner stillness. Through meditation and reflection, you seek to approach the essence of life.',scores:{Serenity:95,Compassion:75,Wisdom:90,Courage:65}}],
+  zh:[{type:'绽放的莲花',desc:'您能在任何环境中发现美丽。即使在逆境中也不失内心的光芒，给周围的人带来平静与安慰。',scores:{宁静:85,慈悲:70,智慧:65,勇气:80}},{type:'山门的守护者',desc:'您能认识边界并明智处理。内心中心坚实，无论任何动荡都不会迷失自我。',scores:{宁静:90,慈悲:60,智慧:85,勇气:75}},{type:'禅定的求道者',desc:'您不断向内心宁静前进。通过冥想和思考，寻求接近生命的本质。',scores:{宁静:95,慈悲:75,智慧:90,勇气:65}}],
+  ja:[{type:'咲き誇る蓮の花',desc:'どんな環境でも美しさを見つけられます。逆境の中でも内なる光を失わず、周りに平和と安らぎをもたらします。',scores:{静けさ:85,慈悲:70,智慧:65,勇気:80}},{type:'山門の守護者',desc:'境界を認識し、賢く扱います。内なる中心が揺るぎなく、どんな動揺にも自分を失いません。',scores:{静けさ:90,慈悲:60,智慧:85,勇気:75}},{type:'禅定の求道者',desc:'内なる静けさに向かって絶えず進む求道者です。瞑想と思索を通じて生命の本質に近づきます。',scores:{静けさ:95,慈悲:75,智慧:90,勇気:65}}],
+};
+
+/* ────── TOUR STATE ────── */
+let step = 'intro';
+let answers = [];
+let score = 0;
+let userInfo = {};
+
+function gotoTour() {
+  document.getElementById('screen-main').classList.remove('active');
+  document.getElementById('screen-tour').classList.add('active');
+  document.getElementById('tourHeaderTitle').textContent = L[lang].tourHeader;
+  document.getElementById('progressWrap').style.display = 'none';
+  step = 'intro'; answers = []; score = 0;
+  renderIntro();
+}
+
+function tourBack() {
+  if (step === 'intro') {
+    document.getElementById('screen-tour').classList.remove('active');
+    document.getElementById('screen-main').classList.add('active');
+  } else if (typeof step === 'number' && step > 0) {
+    step--; renderQ(step);
+  } else if (step === 0 || step === 'result') {
+    step = 'intro';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('tourStepBadge').textContent = {ko:'시작',en:'START',zh:'开始',ja:'開始'}[lang];
+    renderIntro();
+  }
+}
+
+/* INTRO */
+function renderIntro() {
+  const il = {
+    ko:{title:'나를 찾는 사찰 여정',sub:'봉은사의 다섯 전각을 거닐며 내면을 탐색합니다',name:'이름',gender:'성별',genderOpts:['남성','여성','기타'],age:'나이',nationality:'국적',consent:'수집된 개인정보는 통계 목적으로만 활용되며 제3자에게 제공되지 않습니다.',cl:'개인정보 수집 및 이용에 동의합니다.',btn:'투어 시작하기'},
+    en:{title:'A Journey to Find Yourself',sub:'Walk through five sacred halls of Bongeunsa',name:'Name',gender:'Gender',genderOpts:['Male','Female','Other'],age:'Age',nationality:'Nationality',consent:'Collected personal information is used for statistical purposes only and is not shared with third parties.',cl:'I agree to the collection and use of personal information.',btn:'Start the Tour'},
+    zh:{title:'寻找自我的旅程',sub:'漫步奉恩寺五处殿堂，探索内心世界',name:'姓名',gender:'性别',genderOpts:['男','女','其他'],age:'年龄',nationality:'国籍',consent:'收集的个人信息仅用于统计目的，不向第三方提供。',cl:'我同意收集和使用个人信息。',btn:'开始游览'},
+    ja:{title:'自分を見つける旅',sub:'奉恩寺の五つの殿堂を歩き内なる自分を探します',name:'お名前',gender:'性別',genderOpts:['男性','女性','その他'],age:'年齢',nationality:'国籍',consent:'収集された個人情報は統計目的のみに使用され、第三者に提供されません。',cl:'個人情報の収集・利用に同意します。',btn:'ツアーを始める'},
+  }[lang];
+
+  document.getElementById('tourScroll').innerHTML = `
+    <div class="intro-card fade-up">
+      <div class="intro-card-top">
+        <div class="intro-stamp">Who am I</div>
+        <div class="intro-title">${il.title}</div>
+        <div class="intro-sub">${il.sub}</div>
+      </div>
+      <div class="intro-card-body">
+        <div class="form-group">
+          <label class="form-label">${il.name}</label>
+          <input class="form-input" id="fi-name" type="text" placeholder="${il.name}...">
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">${il.gender}</label>
+            <select class="form-select" id="fi-gender">
+              <option value="">-</option>
+              ${il.genderOpts.map(g=>`<option>${g}</option>`).join('')}
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">${il.age}</label>
+            <input class="form-input" id="fi-age" type="number" placeholder="28" min="1" max="120">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:12px">
+          <label class="form-label">${il.nationality}</label>
+          <input class="form-input" id="fi-nat" type="text" placeholder="Korea / 한국 / 中国...">
+        </div>
+        <div class="consent-box">${il.consent}</div>
+        <label class="consent-check">
+          <input type="checkbox" id="fi-consent"> ${il.cl}
+        </label>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('bottomCta').innerHTML = `
+    <button class="cta-primary" onclick="startTour()">${il.btn} →</button>
+  `;
+}
+
+function startTour() {
+  const name = document.getElementById('fi-name').value.trim();
+  const consent = document.getElementById('fi-consent').checked;
+  if (!name) { alert('이름을 입력해주세요.'); return; }
+  if (!consent) { alert('개인정보 수집에 동의해주세요.'); return; }
+  userInfo = { name, gender: document.getElementById('fi-gender').value, age: document.getElementById('fi-age').value, nationality: document.getElementById('fi-nat').value };
+  step = 0;
+  document.getElementById('progressWrap').style.display = 'block';
+  buildProgressDots();
+  renderQ(0);
+}
+
+function buildProgressDots() {
+  const qs = QS[lang] || QS.ko;
+  document.getElementById('progSteps').innerHTML = qs.map((q,i) => `
+    <div class="progress-dot upcoming" id="pdot-${i}">${i+1}</div>
+  `).join('');
+}
+
+function updateProgress(idx) {
+  const qs = QS[lang] || QS.ko;
+  const pct = ((idx+1)/qs.length*100).toFixed(0);
+  document.getElementById('progFill').style.width = pct + '%';
+  qs.forEach((_,i) => {
+    const el = document.getElementById('pdot-'+i);
+    if (!el) return;
+    el.className = 'progress-dot ' + (i < idx ? 'done' : i === idx ? 'current' : 'upcoming');
+  });
+}
+
+/* QUESTION */
+function renderQ(idx) {
+  const qs = QS[lang] || QS.ko;
+  const q = qs[idx];
+  const total = qs.length;
+  updateProgress(idx);
+  document.getElementById('tourStepBadge').textContent = `${idx+1} / ${total}`;
+  const sel = answers[idx] !== undefined ? answers[idx] : -1;
+
+  const nodePositions = ['12%','28%','46%','64%','80%'];
+  const nodes = qs.map((_,i) => {
+    const cls = i < idx ? 'done' : i === idx ? 'current' : 'upcoming';
+    return `<div class="map-node ${cls}" style="left:${nodePositions[i]}">${i+1}</div>`;
+  }).join('');
+
+  const nextLabel = {ko:idx===total-1?'결과 보기':'다음',en:idx===total-1?'See Result':'Next',zh:idx===total-1?'查看结果':'下一步',ja:idx===total-1?'結果を見る':'次へ'}[lang];
+  const backLabel = {ko:'이전',en:'Back',zh:'上一步',ja:'戻る'}[lang];
+
+  document.getElementById('tourScroll').innerHTML = `
+    <div class="fade-up">
+      <div class="q-location-pill">
+        <div class="q-loc-dot"></div>
+        <span class="q-loc-text">${q.loc}</span>
+      </div>
+      <div class="temple-visual">
+        <div class="temple-visual-inner" style="font-size:64px;">${q.emoji}
+          <div class="temple-visual-label">${q.label}</div>
+        </div>
+      </div>
+      <div class="map-card">
+        <div class="map-inner">
+          <div class="map-path-line"></div>
+          ${nodes}
+        </div>
+        <div class="map-footer">
+          <span class="map-footer-label">${{ko:'현재 위치',en:'Current Location',zh:'当前位置',ja:'現在地'}[lang]}</span>
+          <span class="map-footer-pos">${q.loc} · ${idx+1}/${total}</span>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q ${idx+1}</div>
+        <div class="q-text">${q.q.replace(/\n/g,'<br>')}</div>
+        <div class="options" id="optList">
+          ${q.opts.map((o,oi)=>`
+            <button class="opt-btn${sel===oi?' sel':''}" onclick="pickOpt(${oi})">
+              <div class="opt-marker">${String.fromCharCode(65+oi)}</div>
+              <div class="opt-text">${o}</div>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('bottomCta').innerHTML = `
+    ${idx > 0 ? `<button class="cta-secondary" onclick="prevQ()">${backLabel}</button>` : ''}
+    <button class="cta-primary" id="nextBtn" onclick="nextQ()" ${sel===-1?'disabled':''}>${nextLabel} →</button>
+  `;
+}
+
+function pickOpt(oi) {
+  answers[step] = oi;
+  score += oi;
+  document.querySelectorAll('.opt-btn').forEach((b,i) => b.classList.toggle('sel', i===oi));
+  document.getElementById('nextBtn').disabled = false;
+}
+function nextQ() {
+  if (answers[step] === undefined) return;
+  const qs = QS[lang] || QS.ko;
+  if (step < qs.length-1) { step++; renderQ(step); }
+  else renderResult();
+}
+function prevQ() { if (step > 0) { step--; renderQ(step); } }
+
+/* RESULT */
+function renderResult() {
+  step = 'result';
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('tourStepBadge').textContent = {ko:'결과',en:'Result',zh:'结果',ja:'結果'}[lang];
+  const rs = RS[lang] || RS.ko;
+  const r = rs[score % rs.length];
+  const shareL = {ko:'결과 공유',en:'Share',zh:'分享',ja:'共有'}[lang];
+  const retryL = {ko:'다시 하기',en:'Again',zh:'重做',ja:'もう一度'}[lang];
+  const shareTitle = {ko:'공유하기',en:'Share Result',zh:'分享结果',ja:'結果を共有'}[lang];
+  const scoreTitle = {ko:'내면 지수',en:'Inner Index',zh:'内心指数',ja:'内なる指数'}[lang];
+
+  const scoreBars = Object.entries(r.scores).map(([lbl,val])=>`
+    <div class="score-row">
+      <div class="score-label">${lbl}</div>
+      <div class="score-track"><div class="score-fill" style="width:0" data-w="${val}%"></div></div>
+      <div class="score-num">${val}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('tourScroll').innerHTML = `
+    <div class="fade-up">
+      <div class="result-hero">
+        <div class="result-hero-texture"></div>
+        <div class="result-hero-inner">
+          <div class="result-seal">WHO AM I</div>
+          <div class="result-svg-wrap">
+            <svg viewBox="0 0 80 80" width="80" height="80">
+              <circle cx="40" cy="40" r="36" fill="#3A2C1A"/>
+              <path d="M20 55 Q40 20 60 55" stroke="#D4C4A0" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle cx="40" cy="38" r="6" fill="#B08030"/>
+              <circle cx="40" cy="38" r="3" fill="#FAF5E9"/>
+            </svg>
+          </div>
+          <div class="result-type">${r.type}</div>
+          <div class="result-desc">${r.desc}</div>
+        </div>
+      </div>
+      <div class="result-card">
+        <div class="result-card-title">${scoreTitle}</div>
+        ${scoreBars}
+      </div>
+      <div class="result-card">
+        <div class="result-card-title">${shareTitle}</div>
+        <div class="share-row">
+          <button class="share-btn" onclick="doShare('kakao')">
+            <svg class="share-svg" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="#FEE500"/><path d="M14 8c-4 0-7 2.5-7 5.5 0 1.9 1.2 3.5 3 4.5L9.5 21l3.5-2.2c.3 0 .7.1 1 .1 4 0 7-2.5 7-5.5S18 8 14 8z" fill="#3C1E1E"/></svg>
+            <span class="share-label">KakaoTalk</span>
+          </button>
+          <button class="share-btn" onclick="doShare('instagram')">
+            <svg class="share-svg" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="#E4405F"/><circle cx="14" cy="14" r="5" stroke="white" stroke-width="1.5" fill="none"/><circle cx="19" cy="9" r="1.2" fill="white"/></svg>
+            <span class="share-label">Instagram</span>
+          </button>
+          <button class="share-btn" onclick="doShare('x')">
+            <svg class="share-svg" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="#2C2416"/><text x="14" y="19" text-anchor="middle" font-size="13" font-weight="700" fill="white">𝕏</text></svg>
+            <span class="share-label">X (Twitter)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('bottomCta').innerHTML = `
+    <button class="cta-secondary" onclick="retryTour()">${retryL}</button>
+    <button class="cta-primary" onclick="goHome()">${shareL} →</button>
+  `;
+
+  setTimeout(() => {
+    document.querySelectorAll('.score-fill').forEach(el => {
+      el.style.transition = 'width 1s ease';
+      el.style.width = el.dataset.w;
+    });
+  }, 200);
+}
+
+function doShare(pl) {
+  alert(`${pl} 공유 기능은 실제 서비스에서 OG Tag와 함께 연동됩니다.`);
+}
+function retryTour() {
+  answers = []; score = 0; step = 'intro';
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('tourStepBadge').textContent = {ko:'시작',en:'START',zh:'开始',ja:'開始'}[lang];
+  renderIntro();
+}
+function goHome() {
+  document.getElementById('screen-tour').classList.remove('active');
+  document.getElementById('screen-main').classList.add('active');
+}
+</script>
+</body>
+</html>
